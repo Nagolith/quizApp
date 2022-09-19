@@ -21,7 +21,7 @@ menu.add_cascade(label='File', menu=item)
 root.config(menu=menu)
 
 # adding a label to the root window
-lbl = Label(root, text = "Ready to make a quiz?")
+lbl = Label(root, text = "How many quiz questions would you like to make?")
 lbl.grid()
 
 # adding Entry Field
@@ -31,13 +31,23 @@ txt.grid(column=1, row=0)
 # function to display text when
 # button is clicked
 def clicked():
-    res = "You wrote " + txt.get()
-    lbl.configure(text = res)
+    #res = "You wrote " + txt.get()
+    #lbl.configure(text = res)
+    iterations = int(txt.get())
+    for i in range (iterations):
+        lbl = Label(root, text = "Question number ")
+        lbl.grid()
+
 
 # button widget with red color text
 # inside
-btn = Button(root, text = " Click me" ,
+btn = Button(root, text = " Generate lines" ,
              fg = "red", command = clicked)
+
+
+
+# iterating over quiz questions
+
 
 # set Button grid
 btn.grid(column=2, row=0)

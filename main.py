@@ -4,6 +4,10 @@ from tkinter import *
 # create root window
 root = Tk()
 
+# variables
+correct_answer = ""
+
+
 # root window title and dimension
 root.title("Welcome to Quiz making App")
 
@@ -27,6 +31,15 @@ def dark_mode():
 def light_mode():
     root['bg'] = 'white'
 
+# take input for question and evaluate
+# if true of false
+def get_input():
+    INPUT = inputtxt.get("T","F")
+    print(INPUT)
+    if(INPUT == correct_answer):
+        output.insert(END, "Correct!")
+    else:
+        output.insert(END, "Wrong answer")
 
 # adding menu bar in root window
 # new item in menu bar labelled as 'New'
@@ -40,6 +53,11 @@ item.add_command(label='Dark mode', command = dark_mode)
 item.add_separator()
 item.add_command(label='Close', command = root.destroy)
 
+inputtxt = Text(root, height = 10, width = 25
+                ,bg = "light yellow")
+
+output = Text(root, height = 5, width = 25
+            ,bg = "light cyan")
 
 # adding a label to the root window
 lbl = Label(root, text = "How many quiz questions would you like to make?")
@@ -54,6 +72,10 @@ txt.grid(column = 1, row = 0)
 btn = Button(root, text = " Generate lines" ,
              fg = "red", command = clicked)
 
+# button for input and output text
+display = Button(root, height = 2,
+                width = 20, text = "Show"
+                ,command = lambda:get_input())
 
 
 # set Button grid

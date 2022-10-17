@@ -6,6 +6,10 @@ root = Tk()
 
 # variables
 correct_answer = ""
+num = 0
+quest_var = ""
+quest_label = Label()
+quest_entry = Entry()
 
 
 # root window title and dimension
@@ -14,14 +18,24 @@ root.title("Welcome to Quiz making App")
 # Set geometry(width x height)
 root.geometry('1000x800')
 
-# function to iterate text when
-# button is clicked
-def clicked():
-    iterations = int(txt.get())
-    for i in range (iterations):
-        num = i + 1
-        lbl = Label(root, text = "Question number " + str(num))
-        lbl.grid()
+def generate(num):
+    for j in range (num):
+        j = StringVar()
+
+     
+
+def submit(j, num):
+
+    for j in range (num):
+        question = j.get()
+
+    for j in range (num):
+        print("Question is: " + question)
+
+    for j in range (num):
+        j.set("")
+
+
 
 # set background to dark mode
 def dark_mode():
@@ -59,27 +73,29 @@ inputtxt = Text(root, height = 10, width = 25
 output = Text(root, height = 5, width = 25
             ,bg = "light cyan")
 
-# adding a label to the root window
-lbl = Label(root, text = "How many quiz questions would you like to make?")
-lbl.grid()
-
-# adding Entry Field
-txt = Entry(root, width = 10)
-txt.grid(column = 1, row = 0)
-
-# button widget with red color text
-# inside
-btn = Button(root, text = " Generate lines" ,
-             fg = "red", command = clicked)
-
 # button for input and output text
 display = Button(root, height = 2,
                 width = 20, text = "Show"
                 ,command = lambda:get_input())
 
+generate_label = Label(root, text = "How many quiz questions would you like to make?", font = ("calibre", 12))
+generate_entry = Entry(root, textvariable = num, font = ("calibre", 12))
 
-# set Button grid
-btn.grid(column=2, row=0)
+
+for quest_var in quest_var:
+    quest_label = Label(root, text = "Question:", font = ("calibre", 12))
+    quest_entry = Entry(root, textvariable = quest_var, font = ("calibre", 12))
+
+gen_btn = Button(root, text = "Generate", command = generate)
+sub_btn = Button(root, text = "Submit", command = submit)
+
+
+generate_label.grid(row = 0, column = 0)
+generate_entry.grid(row = 0, column = 1)
+quest_label.grid(row = 1, column = 0)
+quest_entry.grid(row = 1, column = 1)
+gen_btn.grid(row = 0, column = 2)
+sub_btn.grid(row = 2, column = 1)
 
 # Execute Tkinter
 root.config(menu=menubar)

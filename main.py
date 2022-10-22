@@ -5,9 +5,12 @@ from tkinter import *
 root = Tk()
 
 # variables
+answer = ""
+answer_entry = Entry()
 correct_answer = ""
 num = 0
-quest_var = ""
+question = ""
+quest_var = {"":""}
 quest_label = Label()
 quest_entry = Entry()
 
@@ -18,14 +21,24 @@ root.title("Welcome to Quiz making App")
 # Set geometry(width x height)
 root.geometry('1000x800')
 
-def generate(num):
-    for j in range (num):
-        j = StringVar()
+
+def generate(num, question, answer, var_quest):
+    for num in range(num):
+        quest_label = Label(root, text = "Question:", font = ("calibre", 12))
+        quest_entry = Entry(root, textvariable = question, font = ("calibre", 12))
+        var_quest = {question:""}
+
+    for question in range(num):
+        answer_entry = Entry(root, textvariable = answer, font = ("calibre", 12), show = "*")
+        var_quest = {question:answer}
+
+    return var_quest
+
+
 
      
 
 def submit(j, num):
-
     for j in range (num):
         question = j.get()
 
@@ -81,19 +94,15 @@ display = Button(root, height = 2,
 generate_label = Label(root, text = "How many quiz questions would you like to make?", font = ("calibre", 12))
 generate_entry = Entry(root, textvariable = num, font = ("calibre", 12))
 
-
-for quest_var in quest_var:
-    quest_label = Label(root, text = "Question:", font = ("calibre", 12))
-    quest_entry = Entry(root, textvariable = quest_var, font = ("calibre", 12))
-
-gen_btn = Button(root, text = "Generate", command = generate)
-sub_btn = Button(root, text = "Submit", command = submit)
-
+quest_var = generate(num, question, answer, quest_var)
+gen_btn = Button(root, text = "Generate", command = generate(num, question, answer, quest_var), )
+sub_btn = Button(root, text = "Submit", command = submit(quest_var, num))
 
 generate_label.grid(row = 0, column = 0)
 generate_entry.grid(row = 0, column = 1)
 quest_label.grid(row = 1, column = 0)
 quest_entry.grid(row = 1, column = 1)
+answer_entry.grid(row = 1, column = 2)
 gen_btn.grid(row = 0, column = 2)
 sub_btn.grid(row = 2, column = 1)
 
